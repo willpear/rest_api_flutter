@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 
 class EditPost extends StatefulWidget {
-  const EditPost({Key? key}) : super(key: key);
+  EditPost(this.post, {Key? key}) : super(key: key);
+  Map post;
 
   @override
   State<EditPost> createState() => _EditPostState();
