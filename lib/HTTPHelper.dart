@@ -52,6 +52,7 @@ class HTTPHelper {
         headers: {'Content-Type': 'application/json'});
 
     // Se o código for 200, ocorreu tudo certo com a consulta na API
+    // Trocar para 201 para retornar sem erro
     if (response.statusCode == 200) {
       // Retorna TRUE
       status = response.body.isNotEmpty;

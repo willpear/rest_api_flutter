@@ -1,18 +1,27 @@
 import 'package:flutter/material.dart';
 import 'package:rest_api/HTTPHelper.dart';
 import 'post_details.dart';
+import 'add_post.dart';
 
 class PostsList extends StatelessWidget {
   PostsList({Key? key}) : super(key: key);
 
   // Faz a instância da classe para pegar os dados da API
-  Future<List<Map>> _futurePosts = HTTPHelper().getAllItems();
+  final Future<List<Map>> _futurePosts = HTTPHelper().getAllItems();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text("Posts"),
+          title: const Text("Posts"),
+        ),
+        // Adiciona o botão flutuante para adicionar um novo post
+        floatingActionButton: FloatingActionButton(
+          onPressed: () {
+            Navigator.of(context)
+                .push(MaterialPageRoute(builder: (context) => AddPost()));
+          },
+          child: Icon(Icons.add),
         ),
         body: FutureBuilder<List<Map>>(
           future: _futurePosts,
@@ -46,7 +55,7 @@ class PostsList extends StatelessWidget {
             }
 
             // Apresentar o loader
-            return Center(child: CircularProgressIndicator());
+            return const Center(child: CircularProgressIndicator());
           },
         ));
   }
